@@ -1,0 +1,21 @@
+@use "../variables" as var;
+@use "../mixin" as mix;
+
+.navbar {
+    @include mix.flexBox($align: center);
+    background-color: var.$red;
+    height: 8vh;
+    box-shadow: 0 1px 10px rgba(0,0,0,.2);
+
+    .nav-brand-logo > * {
+        color: var.$white-body-color;
+        text-decoration: none;
+        transition: color .2s;
+        font-size: 1.5rem;
+        font-weight: 500;
+
+        &:hover {
+            color: white;
+        }
+    }
+}
