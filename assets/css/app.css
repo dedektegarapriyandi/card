@@ -4,7 +4,7 @@
   flex-direction: row;
   justify-content: start;
   align-items: center;
-  background-color: #B83B5E;
+  background-image: linear-gradient(to right, #B83B5E, #F08A5D);
   height: 8vh;
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
 }
