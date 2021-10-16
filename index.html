@@ -21,19 +21,22 @@
         </div>
     </nav>
 
-    <section class="content">
+    <section class="content container">
         <div class="form-box">
-            <form>
+            <div class="form-box-header">
+                <h2>Add article</h2>
+            </div>
+            <form class="form-box-input">
                 <div class="form-group">
-                    <label for="title">Title</label>
-                    <input type="text" class="form-input" name="title" id="title">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" class="form-input" name="title" id="title" autofocus>
                 </div>
                 <div class="form-group">
-                    <label for="sub-title">Sub Title</label>
+                    <label for="sub-title" class="form-label">Sub Title</label>
                     <input type="text" class="form-input" name="sub-title" id="sub-title">
                 </div>
                 <div class="form-group">
-                    <label for="categories">Categories</label>
+                    <label for="categories" class="form-label">Categories</label>
                     <select name="categories" id="categories" class="form-input">
                         <option value="">Categories</option>
                         <option value="sport">Sport</option>
@@ -41,7 +44,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="desc">Description</label>
+                    <label for="desc" class="form-label">Description</label>
                     <textarea name="desc" id="desc" rows="3" class="form-input"></textarea>
                 </div>
                 <button class="btn btn-submit">Submit</button>

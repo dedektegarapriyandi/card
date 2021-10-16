@@ -1,3 +1,58 @@
-@use "../variables" as var;
-@use "../mixin" as mix;
+@use "../variables"as var;
+@use "../mixin"as mix;
 
+.form-box {
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    border-radius: 5px;
+    width: 350px;
+    background-color: white;
+
+    .form-box-header {
+        background-image: linear-gradient(45deg, var.$red, var.$orange);
+        padding: .8rem 0;
+        text-align: center;
+        font-size: .8rem;
+        color: var.$white-body-color;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+
+    .form-box-input {
+        padding: 0 1.5rem;
+
+        .form-group {
+            @include mix.flexBox(column);
+            margin: 1.3rem 0;
+
+            .form-label {
+                color: var.$body-color;
+                font-size: 1rem;
+                margin-bottom: .2rem;
+            }
+
+            .form-input {
+                width: 100%;
+                outline: none;
+                border: 1px solid rgba(0, 0, 0, 0.2);
+                padding: .3rem .5rem;
+                border-radius: 3px;
+            }
+        }
+    }
+
+    .btn-submit {
+        width: 100%;
+        border-radius: 20px;
+        margin: .5rem 0 2rem 0;
+        border: none;
+        background-image: linear-gradient(45deg, var.$orange, var.$red);
+        color: white;
+        font-weight: 500;
+        font-size: .9rem;
+
+        &:hover {
+            opacity: .9;
+            transition: opacity .2s;
+        }
+    }
+}

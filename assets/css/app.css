@@ -4,6 +4,7 @@
   flex-direction: row;
   justify-content: start;
   align-items: center;
+  margin-bottom: 2rem !important;
   background-image: linear-gradient(to right, #B83B5E, #F08A5D);
   height: 8vh;
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
@@ -19,6 +20,58 @@
   color: white;
 }
 
+.form-box {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  width: 350px;
+  background-color: white;
+}
+.form-box .form-box-header {
+  background-image: linear-gradient(45deg, #B83B5E, #F08A5D);
+  padding: 0.8rem 0;
+  text-align: center;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.9);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.form-box .form-box-input {
+  padding: 0 1.5rem;
+}
+.form-box .form-box-input .form-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  margin: 1.3rem 0;
+}
+.form-box .form-box-input .form-group .form-label {
+  color: #212529;
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+}
+.form-box .form-box-input .form-group .form-input {
+  width: 100%;
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 0.3rem 0.5rem;
+  border-radius: 3px;
+}
+.form-box .btn-submit {
+  width: 100%;
+  border-radius: 20px;
+  margin: 0.5rem 0 2rem 0;
+  border: none;
+  background-image: linear-gradient(45deg, #F08A5D, #B83B5E);
+  color: white;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+.form-box .btn-submit:hover {
+  opacity: 0.9;
+  transition: opacity 0.2s;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -32,6 +85,19 @@
   max-width: 1450px;
   padding: 0 5rem;
   margin: auto;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: start;
+}
+
+.btn {
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 5px;
 }
 
 /*# sourceMappingURL=app.css.map */

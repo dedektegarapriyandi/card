@@ -1,5 +1,5 @@
 @use "./variables" as var;
-@use "./mixin";
+@use "./mixin" as mix;
 
 // components
 @use "./components/navbar";
@@ -20,4 +20,14 @@
     max-width: 1450px;
     padding: 0 5rem;
     margin: auto;
+}
+
+.content {
+    @include mix.flexBox();
+}
+
+.btn {
+    cursor: pointer;
+    padding: .5rem;
+    border-radius: 5px;
 }

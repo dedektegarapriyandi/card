@@ -3,6 +3,7 @@
 
 .navbar {
     @include mix.flexBox($align: center);
+    margin-bottom: 2rem !important;
     background-image: linear-gradient(to right, var.$red, var.$orange);
     height: 8vh;
     box-shadow: 0 1px 10px rgba(0,0,0,.2);
