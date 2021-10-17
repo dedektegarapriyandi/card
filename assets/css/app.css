@@ -83,7 +83,7 @@
 }
 .card-container .card {
   width: 250px;
-  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   overflow: hidden;
   cursor: pointer;
@@ -102,7 +102,7 @@
   right: 1rem;
   top: 1rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  background-color: #F08A5D;
+  background-image: linear-gradient(70deg, #F08A5D, #B83B5E);
   display: inline-block;
   width: 50px;
   text-align: center;
@@ -117,7 +117,7 @@
   position: absolute;
   bottom: 0.4rem;
   left: 0;
-  background-color: #F08A5D;
+  background-image: linear-gradient(60deg, #B83B5E, #F08A5D);
   display: inline-block;
   color: rgba(255, 255, 255, 0.9);
   font-weight: 700;
@@ -125,8 +125,37 @@
   font-size: 0.8rem;
   text-align: center;
 }
+.card-container .card .card-title {
+  padding: 0.5rem 1rem;
+}
+.card-container .card .card-title .title {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #212529;
+  margin-bottom: 0.2rem;
+}
+.card-container .card .card-title .sub-title {
+  font-size: 0.8rem;
+  color: #F08A5D;
+}
 .card-container .card .card-description {
+  margin-top: 0.8rem;
   display: none;
+  padding: 0 1rem;
+  font-size: 0.8rem;
+  line-height: 1.5rem;
+  color: #212529;
+}
+.card-container .card .card-footer {
+  padding: 1.5rem 1rem;
+}
+.card-container .card .card-footer .time {
+  font-size: 0.7rem;
+  color: #212529;
+  opacity: 0.8;
+}
+.card-container .card .card-footer .time i {
+  margin-right: 0.5rem;
 }
 
 * {
