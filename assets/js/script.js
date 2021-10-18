@@ -47,7 +47,7 @@ Article.prototype.add = (e) => {
     const d = new Date();
     const date = d.getDate();
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-    const release = `${date} ${months[d.getMonth()].split("").slice(0, 3).join("")}`;
+    const release = `${date} ${months[d.getMonth()]}`;
 
     // get time now
     const hour = d.getHours();
@@ -60,24 +60,24 @@ Article.prototype.add = (e) => {
     // add to localstorage array
     data.push(newData);
 
+    // create the card component
+    Article.prototype.newCard([newData]);
+
     localStorage.setItem("data", JSON.stringify(data));
 }
 
-Article.prototype.get = () => {
-    // check and assign array to localstorage
-    if (localStorage.getItem("data") === null) {
-        data = [];
-    } else {
-        data = JSON.parse(localStorage.getItem("data"));
-    }
-
+Article.prototype.newCard = (data) => {
+    // loop data to card component
     data.forEach(value => {
         const cardContainer = document.querySelector(".card-container");
-        const newDiv = document.createElement("div");
-        newDiv.classList.add("card");
-        newDiv.innerHTML = `<div class="card-img">
+        const newA = document.createElement("a");
+        newA.classList.add("card");
+        newA.setAttribute("href", "#");
+        newA.innerHTML = `<div class="card-img">
                                 <img src="./assets/img/amazon.jpg" alt="img">
-                                <div class="date">${value.release}</div>
+                                <div class="date">
+                                        ${value.release.split(" ")[0]}
+                                        ${value.release.split(" ")[1].split("").slice(0,3).join("")}</div>
                                 <div class="category">${value.category}</div>
                             </div>
                             <div class="card-title">
@@ -91,8 +91,19 @@ Article.prototype.get = () => {
                                 <p class="time"><i class="far fa-clock"></i>6 minutes ago</p>
                             </div>`
 
-        cardContainer.appendChild(newDiv);
+        cardContainer.appendChild(newA);
     })
+}
+
+Article.prototype.get = () => {
+    // check and assign array to localstorage
+    if (localStorage.getItem("data") === null) {
+        data = [];
+    } else {
+        data = JSON.parse(localStorage.getItem("data"));
+    }
+
+    Article.prototype.newCard(data);
 }
 
 submit.addEventListener("click", Article.prototype.add);
