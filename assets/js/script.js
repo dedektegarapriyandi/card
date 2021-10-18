@@ -63,4 +63,37 @@ Article.prototype.add = (e) => {
     localStorage.setItem("data", JSON.stringify(data));
 }
 
+Article.prototype.get = () => {
+    // check and assign array to localstorage
+    if (localStorage.getItem("data") === null) {
+        data = [];
+    } else {
+        data = JSON.parse(localStorage.getItem("data"));
+    }
+
+    data.forEach(value => {
+        const cardContainer = document.querySelector(".card-container");
+        const newDiv = document.createElement("div");
+        newDiv.classList.add("card");
+        newDiv.innerHTML = `<div class="card-img">
+                                <img src="./assets/img/amazon.jpg" alt="img">
+                                <div class="date">${value.release}</div>
+                                <div class="category">${value.category}</div>
+                            </div>
+                            <div class="card-title">
+                                <h2 class="title">${value.title}</h2>
+                                <h4 class="sub-title">${value.subTitle}</h4>
+                            </div>
+                            <div class="card-description">
+                                <p>${value.description}</p>
+                            </div>
+                            <div class="card-footer">
+                                <p class="time"><i class="far fa-clock"></i>6 minutes ago</p>
+                            </div>`
+
+        cardContainer.appendChild(newDiv);
+    })
+}
+
 submit.addEventListener("click", Article.prototype.add);
+window.addEventListener("DOMContentLoaded", Article.prototype.get);
