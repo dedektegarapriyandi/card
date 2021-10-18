@@ -67,8 +67,19 @@ Article.prototype.add = (e) => {
 }
 
 Article.prototype.newCard = (data) => {
+    // get time now
+    const d = new Date();
+    const getMinutesNow = d.getMinutes();
+
     // loop data to card component
     data.forEach(value => {
+        let timeUpload = "Just now";
+
+        const getDataMinutes = value.time.split(":")[1];
+        if(getMinutesNow - getDataMinutes > 0) {
+            timeUpload = `${getMinutesNow - getDataMinutes} minute ago`;
+        }
+        
         const cardContainer = document.querySelector(".card-container");
         const newA = document.createElement("a");
         newA.classList.add("card");
@@ -88,7 +99,7 @@ Article.prototype.newCard = (data) => {
                                 <p>${value.description}</p>
                             </div>
                             <div class="card-footer">
-                                <p class="time"><i class="far fa-clock"></i>6 minutes ago</p>
+                                <p class="time"><i class="far fa-clock"></i>${timeUpload}</p>
                             </div>`
 
         cardContainer.appendChild(newA);
