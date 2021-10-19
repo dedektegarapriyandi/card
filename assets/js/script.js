@@ -69,22 +69,40 @@ Article.prototype.add = (e) => {
 Article.prototype.newCard = (data) => {
     // get time now
     const d = new Date();
-    const getMinutesNow = d.getMinutes();
+
+    // convert hours now to minutes
+    const hoursNow = d.getHours() * 60;
+
+    // get minutes now
+    const minutesNow = d.getMinutes();
+
+    const time = `${hoursNow}:${minutesNow}`;
+
+    // increase time (hours + minutes)
+    const timeNow = time.split(":").map(time => time * 1000).reduce((acc, curr) => acc + curr);
 
     // loop data to card component
     data.forEach(value => {
-        // get the last time upload
-        let format = "minute ago";
-        const getDataMinutes = value.time.split(":")[1];
+        // get data time
+        const hoursToMinutes = parseInt(value.time.split(":")[0]) * 60;
+        const minutes = value.time.split(":");
 
-        let lastTime = getMinutesNow - (getDataMinutes - 60);
+        minutes.splice(0, 1, hoursToMinutes);
+        const dataTime = minutes.map(minute => parseInt(minute) * 1000).reduce((acc, curr) => acc + curr);
 
-        if (lastTime === 60) {
-            lastTime = "Just now";
+        // calculate
+        // const minute = 1000 * 60;
+        // const hour = minute * 60;
+        // const day = hour * 24;
+        // const year = day * 365;
 
-        } else if (lastTime > 60) {
-            lastTime = `${Math.floor(lastTime / 60)} ${format}`;
+        let timeAgo = `${Math.round((timeNow - dataTime) / 1000)} minutes ago`;
+
+        if(parseInt(timeAgo) > 60) {
+            timeAgo = `${Math.round((timeNow - dataTime) / 60000)} hours ago`;
         }
+
+        console.log(parseInt(timeAgo) > 60);
 
         const cardContainer = document.querySelector(".card-container");
         const newA = document.createElement("a");
@@ -105,7 +123,7 @@ Article.prototype.newCard = (data) => {
                                 <p>${value.description}</p>
                             </div>
                             <div class="card-footer">
-                                <p class="time"><i class="far fa-clock"></i>${lastTime}</p>
+                                <p class="time"><i class="far fa-clock"></i>${timeAgo}</p>
                             </div>`
 
         cardContainer.appendChild(newA);
