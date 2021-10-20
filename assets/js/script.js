@@ -1,13 +1,12 @@
 const inputs = document.querySelectorAll(".form-input");
 const submit = document.querySelector(".btn-submit");
 
-function Article(title, subTitle, category, description, release, time) {
+function Article(title, subTitle, category, description, date) {
     this.title = title;
     this.subTitle = subTitle;
     this.category = category;
     this.description = description;
-    this.release = release;
-    this.time = time;
+    this.date = date;
 }
 
 Article.prototype.add = (e) => {
@@ -43,17 +42,12 @@ Article.prototype.add = (e) => {
         input.value = "";
     });
 
-    // get the date and month now
-    const d = new Date();
-    const date = d.getDate();
-    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-    const release = `${date} ${months[d.getMonth()]}`;
-
-    // get time now
-    const time = Date.now();
+    // get date now
+    const now = new Date();
+    const date = `${now.getFullYear()}-${now.getMonth()}-${now.getDate()}`;
 
     // send to constructor
-    const newData = new Article(title, subTitle, category, description, release, time);
+    const newData = new Article(title, subTitle, category, description, date);
 
     // add to localstorage array
     data.push(newData);
@@ -99,9 +93,7 @@ Article.prototype.newCard = (data) => {
         newA.setAttribute("href", "#");
         newA.innerHTML = `<div class="card-img">
                                 <img src="./assets/img/amazon.jpg" alt="img">
-                                <div class="date">
-                                        ${value.release.split(" ")[0]}
-                                        ${value.release.split(" ")[1].split("").slice(0,3).join("")}</div>
+                                <div class="date"></div>
                                 <div class="category">${value.category}</div>
                             </div>
                             <div class="card-title">
