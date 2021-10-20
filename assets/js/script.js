@@ -81,13 +81,13 @@ Article.prototype.newCard = (data) => {
 
         if (timeAgo < minutes) {
             timeAgo = "Just now";
-        } else if (timeAgo > minutes - 1) {
+        } else if ((timeAgo > minutes - 1) && (timeAgo < hours)) {
             timeAgo = `${Math.floor(timeAgo / minutes)} minutes ago`;
-        } else if (timeAgo > hours - 1) {
+        } else if ((timeAgo > hours - 1) && (timeAgo < days)) {
             timeAgo = `${Math.floor(timeAgo / hours)} hours ago`;
-        } else if (timeAgo > days - 1) {
+        } else if ((timeAgo > days - 1)&& (timeAgo < months)) {
             timeAgo = `${Math.floor(timeAgo / days)} days ago`;
-        } else if (timeAgo > months - 1) {
+        } else if ((timeAgo > months - 1)&& (timeAgo < years)) {
             timeAgo = `${Math.floor(timeAgo / months)} months ago`;
         } else {
             timeAgo = `${Math.floor(timeAgo / years)} years ago`;
