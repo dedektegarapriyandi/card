@@ -50,9 +50,7 @@ Article.prototype.add = (e) => {
     const release = `${date} ${months[d.getMonth()]}`;
 
     // get time now
-    const hour = d.getHours();
-    const min = d.getMinutes();
-    const time = `${hour}:${min}`;
+    const time = Date.now();
 
     // send to constructor
     const newData = new Article(title, subTitle, category, description, release, time);
@@ -68,42 +66,34 @@ Article.prototype.add = (e) => {
 
 Article.prototype.newCard = (data) => {
     // get time now
-    const d = new Date();
-
-    // convert hours now to minutes
-    const hoursNow = d.getHours() * 60;
-
-    // get minutes now
-    const minutesNow = d.getMinutes();
-
-    const time = `${hoursNow}:${minutesNow}`;
-
-    // increase time (hours + minutes)
-    const timeNow = time.split(":").map(time => time * 1000).reduce((acc, curr) => acc + curr);
+    const timeNow = Date.now();
 
     // loop data to card component
     data.forEach(value => {
-        // get data time
-        const hoursToMinutes = parseInt(value.time.split(":")[0]) * 60;
-        const minutes = value.time.split(":");
+        // calculate time in milisecond
+        const minutes = 1000 * 60;
+        const hours = minutes * 60;
+        const days = hours * 24;
+        const months = days * 30;
+        const years = months * 12;
 
-        minutes.splice(0, 1, hoursToMinutes);
-        const dataTime = minutes.map(minute => parseInt(minute) * 1000).reduce((acc, curr) => acc + curr);
+        let timeAgo = timeNow - value.time;
 
-        // calculate
-        // const minute = 1000 * 60;
-        // const hour = minute * 60;
-        // const day = hour * 24;
-        // const year = day * 365;
-
-        let timeAgo = `${Math.round((timeNow - dataTime) / 1000)} minutes ago`;
-
-        if(parseInt(timeAgo) > 60) {
-            timeAgo = `${Math.round((timeNow - dataTime) / 60000)} hours ago`;
+        if (timeAgo < minutes) {
+            timeAgo = "Just now";
+        } else if (timeAgo > minutes - 1) {
+            timeAgo = `${Math.floor(timeAgo / minutes)} minutes ago`;
+        } else if (timeAgo > hours - 1) {
+            timeAgo = `${Math.floor(timeAgo / hours)} hours ago`;
+        } else if (timeAgo > days - 1) {
+            timeAgo = `${Math.floor(timeAgo / days)} days ago`;
+        } else if (timeAgo > months - 1) {
+            timeAgo = `${Math.floor(timeAgo / months)} months ago`;
+        } else {
+            timeAgo = `${Math.floor(timeAgo / years)} years ago`;
         }
 
-        console.log(parseInt(timeAgo) > 60);
-
+        console.log(timeAgo)
         const cardContainer = document.querySelector(".card-container");
         const newA = document.createElement("a");
         newA.classList.add("card");
