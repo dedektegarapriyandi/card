@@ -93,7 +93,6 @@ Article.prototype.newCard = (data) => {
             timeAgo = `${Math.floor(timeAgo / years)} years ago`;
         }
 
-        console.log(timeAgo)
         const cardContainer = document.querySelector(".card-container");
         const newA = document.createElement("a");
         newA.classList.add("card");
