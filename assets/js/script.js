@@ -44,7 +44,7 @@ Article.prototype.add = (e) => {
 
     // get date now
     const now = new Date();
-    const date = `${now.getFullYear()}-${now.getMonth()}-${now.getDate()}`;
+    const date = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), now.getMinutes(), now.getSeconds(), now.getMilliseconds());
 
     // send to constructor
     const newData = new Article(title, subTitle, category, description, date);
@@ -60,10 +60,20 @@ Article.prototype.add = (e) => {
 
 Article.prototype.newCard = (data) => {
     // get time now
-    const timeNow = Date.now();
+    const nowDate = Date.now();
 
     // loop data to card component
     data.forEach(value => {
+        // get data date
+        const dataDate = new Date(value.date);
+
+        // get date and month
+        const monthsArr = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "Desember"]
+        const month = monthsArr[dataDate.getMonth()];
+        const date = `${dataDate.getDate()} ${month.split("").slice(0,3).join("")}`;
+
+        let timeAgo = nowDate - dataDate;
+
         // calculate time in milisecond
         const minutes = 1000 * 60;
         const hours = minutes * 60;
@@ -71,17 +81,15 @@ Article.prototype.newCard = (data) => {
         const months = days * 30;
         const years = months * 12;
 
-        let timeAgo = timeNow - value.time;
-
         if (timeAgo < minutes) {
             timeAgo = "Just now";
         } else if ((timeAgo > minutes - 1) && (timeAgo < hours)) {
             timeAgo = `${Math.floor(timeAgo / minutes)} minutes ago`;
         } else if ((timeAgo > hours - 1) && (timeAgo < days)) {
             timeAgo = `${Math.floor(timeAgo / hours)} hours ago`;
-        } else if ((timeAgo > days - 1)&& (timeAgo < months)) {
+        } else if ((timeAgo > days - 1) && (timeAgo < months)) {
             timeAgo = `${Math.floor(timeAgo / days)} days ago`;
-        } else if ((timeAgo > months - 1)&& (timeAgo < years)) {
+        } else if ((timeAgo > months - 1) && (timeAgo < years)) {
             timeAgo = `${Math.floor(timeAgo / months)} months ago`;
         } else {
             timeAgo = `${Math.floor(timeAgo / years)} years ago`;
@@ -93,7 +101,7 @@ Article.prototype.newCard = (data) => {
         newA.setAttribute("href", "#");
         newA.innerHTML = `<div class="card-img">
                                 <img src="./assets/img/amazon.jpg" alt="img">
-                                <div class="date"></div>
+                                <div class="date">${date}</div>
                                 <div class="category">${value.category}</div>
                             </div>
                             <div class="card-title">
