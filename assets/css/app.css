@@ -95,10 +95,10 @@
   height: 100px;
 }
 .card-container .card:hover .card-description {
-  height: 90px;
+  height: 95px;
 }
 .card-container .card:hover .card-footer {
-  padding: 1.19rem 1rem;
+  padding: 1.03rem 1rem;
 }
 .card-container .card .card-img {
   position: relative;
