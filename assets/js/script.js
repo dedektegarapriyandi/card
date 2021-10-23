@@ -58,50 +58,55 @@ Article.prototype.add = (e) => {
     localStorage.setItem("data", JSON.stringify(data));
 }
 
-Article.prototype.newCard = (data) => {
+Article.prototype.timeAgo = (date) => {
     // get time now
     const nowDate = Date.now();
+    const dataDate = new Date(date);
 
-    // loop data to card component
+    let timeAgo = nowDate - dataDate;
+
+    // calculate time in milisecond
+    const minutes = 1000 * 60;
+    const hours = minutes * 60;
+    const days = hours * 24;
+    const months = days * 30;
+    const years = months * 12;
+
+    if (timeAgo < minutes) {
+        timeAgo = "Just now";
+    } else if ((timeAgo > minutes - 1) && (timeAgo < hours)) {
+        timeAgo = `${Math.floor(timeAgo / minutes)} minutes ago`;
+    } else if ((timeAgo > hours - 1) && (timeAgo < days)) {
+        timeAgo = `${Math.floor(timeAgo / hours)} hours ago`;
+    } else if ((timeAgo > days - 1) && (timeAgo < months)) {
+        timeAgo = `${Math.floor(timeAgo / days)} days ago`;
+    } else if ((timeAgo > months - 1) && (timeAgo < years)) {
+        timeAgo = `${Math.floor(timeAgo / months)} months ago`;
+    } else {
+        timeAgo = `${Math.floor(timeAgo / years)} years ago`;
+    }
+
+    return timeAgo;
+}
+
+Article.prototype.getDate = (date) => {
+    // get date and month
+    const dataDate = new Date(date);
+    const monthsArr = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "Desember"]
+    const month = monthsArr[dataDate.getMonth()];
+
+    return date = `${dataDate.getDate()} ${month.split("").slice(0,3).join("")}`;
+}
+
+Article.prototype.newCard = (data) => {
     data.forEach(value => {
-        // get data date
-        const dataDate = new Date(value.date);
-
-        // get date and month
-        const monthsArr = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "Desember"]
-        const month = monthsArr[dataDate.getMonth()];
-        const date = `${dataDate.getDate()} ${month.split("").slice(0,3).join("")}`;
-
-        let timeAgo = nowDate - dataDate;
-
-        // calculate time in milisecond
-        const minutes = 1000 * 60;
-        const hours = minutes * 60;
-        const days = hours * 24;
-        const months = days * 30;
-        const years = months * 12;
-
-        if (timeAgo < minutes) {
-            timeAgo = "Just now";
-        } else if ((timeAgo > minutes - 1) && (timeAgo < hours)) {
-            timeAgo = `${Math.floor(timeAgo / minutes)} minutes ago`;
-        } else if ((timeAgo > hours - 1) && (timeAgo < days)) {
-            timeAgo = `${Math.floor(timeAgo / hours)} hours ago`;
-        } else if ((timeAgo > days - 1) && (timeAgo < months)) {
-            timeAgo = `${Math.floor(timeAgo / days)} days ago`;
-        } else if ((timeAgo > months - 1) && (timeAgo < years)) {
-            timeAgo = `${Math.floor(timeAgo / months)} months ago`;
-        } else {
-            timeAgo = `${Math.floor(timeAgo / years)} years ago`;
-        }
-
         const cardContainer = document.querySelector(".card-container");
         const newA = document.createElement("a");
         newA.classList.add("card");
         newA.setAttribute("href", "#");
         newA.innerHTML = `<div class="card-img">
                                 <img src="./assets/img/amazon.jpg" alt="img">
-                                <div class="date">${date}</div>
+                                <div class="date">${Article.prototype.getDate(value.date)}</div>
                                 <div class="category">${value.category}</div>
                             </div>
                             <div class="card-title">
@@ -112,7 +117,7 @@ Article.prototype.newCard = (data) => {
                                 <p>${value.description}</p>
                             </div>
                             <div class="card-footer">
-                                <p class="time"><i class="far fa-clock"></i>${timeAgo}</p>
+                                <p class="time"><i class="far fa-clock"></i>${Article.prototype.timeAgo(value.date)}</p>
                             </div>`
 
         cardContainer.appendChild(newA);
