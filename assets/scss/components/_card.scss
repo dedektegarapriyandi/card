@@ -1,115 +1,138 @@
 @use "../variables"as var;
 @use "../mixin"as mix;
 
-.card-container {
+.card-content {
     flex: 2.5;
-    @include mix.flexBox();
-    flex-wrap: wrap;
+    @include mix.flexBox(column);
     margin-left: 4rem;
 
-    .card {
-        width: 250px;
-        box-shadow: 1px 1px 20px rgba(0, 0, 0, .1);
-        border-radius: 5px;
-        overflow: hidden;
-        cursor: pointer;
-        margin: 0 .5rem 1.3rem .5rem;
-        text-decoration: none;
+    .card-filter {
+        margin-bottom: 1.5rem;
 
-        &:hover {
-            .card-img img {
-                height: 100px;
+        .filter {
+            outline: none;
+            font-size: .8rem;
+            padding: .5rem;
+            width: 150px;
+            border: none;
+            color: white;
+            background-image: linear-gradient(to right, var.$orange, var.$red);
+            box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+
+            option {
+                color: black;
+            }
+        }
+    }
+
+    .card-container {
+        @include mix.flexBox();
+        flex-wrap: wrap;
+
+        .card {
+            width: 250px;
+            box-shadow: 1px 1px 20px rgba(0, 0, 0, .1);
+            border-radius: 5px;
+            overflow: hidden;
+            cursor: pointer;
+            margin: 0 .5rem 1.3rem .5rem;
+            text-decoration: none;
+
+            &:hover {
+                .card-img img {
+                    height: 100px;
+                }
+
+                .card-description {
+                    height: 95px;
+                }
+
+                .card-footer {
+                    padding: 1.03rem 1rem;
+                }
+            }
+
+            .card-img {
+                position: relative;
+
+                img {
+                    width: 100%;
+                    height: 180px;
+                    object-fit: cover;
+                    transition: all .3s;
+                }
+
+                .date {
+                    position: absolute;
+                    right: 1rem;
+                    top: 1rem;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+                    background-image: linear-gradient(70deg, var.$orange, var.$red);
+                    display: inline-block;
+                    width: 50px;
+                    text-align: center;
+                    line-height: 10px;
+                    font-weight: 700;
+                    color: var.$white-body-color;
+                    border-radius: 50%;
+                    padding: .9rem;
+                    font-size: .6rem;
+                }
+
+                .category {
+                    position: absolute;
+                    bottom: .4rem;
+                    left: 0;
+                    // background-color: var.$purple;
+                    background-image: linear-gradient(60deg, var.$red, var.$orange);
+                    display: inline-block;
+                    color: var.$white-body-color;
+                    font-weight: 700;
+                    padding: .2rem .8rem;
+                    font-size: .8rem;
+                    text-align: center;
+                }
+            }
+
+            .card-title {
+                padding: .5rem 1rem;
+
+                .title {
+                    font-size: 1.2rem;
+                    font-weight: 500;
+                    color: var.$body-color;
+                    margin-bottom: .2rem;
+                }
+
+                .sub-title {
+                    font-size: .8rem;
+                    color: var.$orange;
+                }
             }
 
             .card-description {
-                height: 95px;
-            }
-
-            .card-footer {
-                padding: 1.03rem 1rem;
-            }
-        }
-
-        .card-img {
-            position: relative;
-
-            img {
-                width: 100%;
-                height: 180px;
-                object-fit: cover;
+                margin-top: .8rem;
+                height: 0;
+                padding: 0 1rem;
+                font-size: .8rem;
+                line-height: 1.5rem;
+                color: var.$body-color;
+                overflow: hidden;
                 transition: all .3s;
             }
 
-            .date {
-                position: absolute;
-                right: 1rem;
-                top: 1rem;
-                box-shadow: 0 0 10px rgba(0, 0, 0, .2);
-                background-image: linear-gradient(70deg, var.$orange, var.$red);
-                display: inline-block;
-                width: 50px;
-                text-align: center;
-                line-height: 10px;
-                font-weight: 700;
-                color: var.$white-body-color;
-                border-radius: 50%;
-                padding: .9rem;
-                font-size: .6rem;
-            }
+            .card-footer {
+                padding: 1.5rem 1rem;
+                transition: all .3s;
 
-            .category {
-                position: absolute;
-                bottom: .4rem;
-                left: 0;
-                // background-color: var.$purple;
-                background-image: linear-gradient(60deg, var.$red, var.$orange);
-                display: inline-block;
-                color: var.$white-body-color;
-                font-weight: 700;
-                padding: .2rem .8rem;
-                font-size: .8rem;
-                text-align: center;
-            }
-        }
+                .time {
+                    font-size: .7rem;
+                    color: var.$body-color;
+                    opacity: .8;
 
-        .card-title {
-            padding: .5rem 1rem;
-
-            .title {
-                font-size: 1.2rem;
-                font-weight: 500;
-                color: var.$body-color;
-                margin-bottom: .2rem;
-            }
-
-            .sub-title {
-                font-size: .8rem;
-                color: var.$orange;
-            }
-        }
-
-        .card-description {
-            margin-top: .8rem;
-            height: 0;
-            padding: 0 1rem;
-            font-size: .8rem;
-            line-height: 1.5rem;
-            color: var.$body-color;
-            overflow: hidden;
-            transition: all .3s;
-        }
-
-        .card-footer {
-            padding: 1.5rem 1rem;
-            transition: all .3s;
-
-            .time {
-                font-size: .7rem;
-                color: var.$body-color;
-                opacity: .8;
-
-                i {
-                    margin-right: .5rem;
+                    i {
+                        margin-right: .5rem;
+                    }
                 }
             }
         }
