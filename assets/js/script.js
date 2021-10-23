@@ -1,5 +1,7 @@
 const inputs = document.querySelectorAll(".form-input");
 const submit = document.querySelector(".btn-submit");
+const filter = document.querySelector(".filter");
+const cards = document.querySelector(".card-container").childNodes;
 
 function Article(title, subTitle, category, description, date) {
     this.title = title;
@@ -135,5 +137,21 @@ Article.prototype.get = () => {
     Article.prototype.newCard(data);
 }
 
+Article.prototype.filter = (e) => {
+    const cardArr = [...cards];
+
+    if (e.target.value == "nature") {
+        cardArr.filter(item => item.children[0].children[2].innerText == "sport").map(filtered => filtered.style.display = "none");
+        cardArr.filter(item => item.children[0].children[2].innerText == "nature").map(filtered => filtered.style.display = "block");
+    } else if (e.target.value == "sport") {
+        cardArr.filter(item => item.children[0].children[2].innerText == "nature").map(filtered => filtered.style.display = "none");
+        cardArr.filter(item => item.children[0].children[2].innerText == "sport").map(filtered => filtered.style.display = "block");
+    }else {
+        cardArr.filter(item => item.children[0].children[2].innerText == "sport").map(filtered => filtered.style.display = "block");
+        cardArr.filter(item => item.children[0].children[2].innerText == "nature").map(filtered => filtered.style.display = "block");
+    }
+}
+
 submit.addEventListener("click", Article.prototype.add);
 window.addEventListener("DOMContentLoaded", Article.prototype.get);
+filter.addEventListener("change", Article.prototype.filter);
