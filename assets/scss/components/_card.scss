@@ -28,6 +28,7 @@
     .card-container {
         @include mix.flexBox();
         flex-wrap: wrap;
+        width: 100%;
 
         .card {
             width: 250px;

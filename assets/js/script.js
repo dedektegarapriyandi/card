@@ -150,9 +150,23 @@ Article.prototype.filter = (e) => {
 }
 
 Article.prototype.search = () => {
-    cards.innerHTML = "";
-    Article.prototype.newCard(data.filter(item => item.title.toLowerCase().includes(search.value.toLowerCase())));
-    console.log(search.value)
+    cards.innerHTML = alertMessage();
+
+    Article.prototype.newCard(data.filter(item => {
+        const dataTitle = item.title.toLowerCase();
+        const searchValue = search.value.toLowerCase();
+
+        if (dataTitle.includes(searchValue)) {
+            cards.innerHTML = "";
+            return item.title.toLowerCase().includes(search.value.toLowerCase())
+        }
+    }));
+}
+
+const alertMessage = () => {
+    return `<div class="alert">
+                <p class="message">${search.value} not found!</p>
+            </div>`;
 }
 
 submit.addEventListener("click", Article.prototype.add);

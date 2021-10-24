@@ -1,0 +1,14 @@
+@use "../variables" as var;
+
+.alert {
+    width: 100%;
+    display: block;
+    padding: 1rem;
+    color: var.$white-body-color;
+    background-image: linear-gradient(7deg, var.$red, var.$orange);
+    border-radius: 5px;
+
+    .message {
+        font-size: .8rem;
+    }
+}
