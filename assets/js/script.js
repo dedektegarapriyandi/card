@@ -2,6 +2,7 @@ const inputs = document.querySelectorAll(".form-input");
 const submit = document.querySelector(".btn-submit");
 const filter = document.querySelector(".filter");
 const cards = document.querySelector(".card-container");
+const search = document.querySelector(".search-input");
 
 function Article(title, subTitle, category, description, date) {
     this.title = title;
@@ -148,6 +149,13 @@ Article.prototype.filter = (e) => {
     }
 }
 
+Article.prototype.search = () => {
+    cards.innerHTML = "";
+    Article.prototype.newCard(data.filter(item => item.title.toLowerCase().includes(search.value.toLowerCase())));
+    console.log(search.value)
+}
+
 submit.addEventListener("click", Article.prototype.add);
 window.addEventListener("DOMContentLoaded", Article.prototype.get);
 filter.addEventListener("change", Article.prototype.filter);
+search.addEventListener("input", Article.prototype.search);
