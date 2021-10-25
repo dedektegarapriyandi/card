@@ -150,7 +150,7 @@ Article.prototype.filter = (e) => {
 }
 
 Article.prototype.search = () => {
-    cards.innerHTML = alertMessage();
+    cards.innerHTML = alertMessage(search.value, "not found!");
 
     Article.prototype.newCard(data.filter(item => {
         const dataTitle = item.title.toLowerCase();
@@ -163,9 +163,9 @@ Article.prototype.search = () => {
     }));
 }
 
-const alertMessage = () => {
+const alertMessage = (object, message) => {
     return `<div class="alert">
-                <p class="message">${search.value} not found!</p>
+                <p class="message">${object} ${message}</p>
             </div>`;
 }
 
