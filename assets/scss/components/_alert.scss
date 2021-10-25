@@ -6,7 +6,9 @@
     padding: 1rem;
     color: var.$white-body-color;
     background-image: linear-gradient(7deg, var.$red, var.$orange);
+    margin-bottom: 1rem;
     border-radius: 5px;
+    animation: shake .2s backwards;
 
     .message {
         font-size: .8rem;

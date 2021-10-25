@@ -45,6 +45,21 @@ Article.prototype.add = (e) => {
         input.value = "";
     });
 
+    // simple validation
+    if ((title === "") || (subTitle === "") || (category === "") || (description === "")) {
+        const element = alertMessage("Insert data correctly", "");
+        cards.insertBefore(element, cards.firstChild);
+
+        return setTimeout(() => {
+            cards.firstChild.style.opacity = "0";
+            cards.firstChild.style.transition = "1s";
+
+            setTimeout(() => {
+                cards.firstChild.remove();
+            }, 800)
+        }, 2000);
+    }
+
     // get date now
     const now = new Date();
     const date = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), now.getMinutes(), now.getSeconds(), now.getMilliseconds());
@@ -150,7 +165,8 @@ Article.prototype.filter = (e) => {
 }
 
 Article.prototype.search = () => {
-    cards.innerHTML = alertMessage(search.value, "not found!");
+    cards.innerHTML = "";
+    cards.appendChild(alertMessage(search.value, "not found!"));
 
     Article.prototype.newCard(data.filter(item => {
         const dataTitle = item.title.toLowerCase();
@@ -164,9 +180,16 @@ Article.prototype.search = () => {
 }
 
 const alertMessage = (object, message) => {
-    return `<div class="alert">
-                <p class="message">${object} ${message}</p>
-            </div>`;
+    const newDiv = document.createElement("div");
+    newDiv.classList.add("alert");
+
+    const newP = document.createElement("p");
+    newP.classList.add("message");
+    newP.innerText = `"${object}" ${message}`;
+
+    newDiv.appendChild(newP);
+
+    return newDiv;
 }
 
 submit.addEventListener("click", Article.prototype.add);

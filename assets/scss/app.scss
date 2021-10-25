@@ -1,5 +1,5 @@
-@use "./variables" as var;
-@use "./mixin" as mix;
+@use "./variables"as var;
+@use "./mixin"as mix;
 
 // components
 @use "./components/navbar";
@@ -11,46 +11,60 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap');
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    border-collapse: collapse;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border-collapse: collapse;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
 }
 
 .container {
-    max-width: 1450px;
-    padding: 0 5rem;
-    margin: auto;
+  max-width: 1450px;
+  padding: 0 5rem;
+  margin: auto;
 }
 
 .content {
-    @include mix.flexBox();
+  @include mix.flexBox();
 }
 
 .btn {
-    cursor: pointer;
-    padding: .5rem;
-    border-radius: 5px;
+  cursor: pointer;
+  padding: .5rem;
+  border-radius: 5px;
 }
 
 ::-webkit-scrollbar {
-    width: 8px;
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 15px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
   }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1; 
+
+  50% {
+    transform: translateX(7px);
   }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #888; 
-    border-radius: 15px;
+
+  100% {
+    transform: translateX(0);
   }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555; 
-  }
+}

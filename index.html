@@ -30,15 +30,15 @@
             <form class="form-box-input">
                 <div class="form-group">
                     <label for="title" class="form-label">Title</label>
-                    <input type="text" class="form-input" name="title" id="title" autofocus>
+                    <input type="text" class="form-input" name="title" id="title" autofocus required>
                 </div>
                 <div class="form-group">
                     <label for="sub-title" class="form-label">Sub Title</label>
-                    <input type="text" class="form-input" name="sub-title" id="sub-title">
+                    <input type="text" class="form-input" name="sub-title" id="sub-title" required>
                 </div>
                 <div class="form-group">
                     <label for="categories" class="form-label">Categories</label>
-                    <select name="categories" id="categories" class="form-input">
+                    <select name="categories" id="categories" class="form-input" required>
                         <option value="">Categories</option>
                         <option value="sport">Sport</option>
                         <option value="nature">Nature</option>
@@ -46,7 +46,7 @@
                 </div>
                 <div class="form-group">
                     <label for="desc" class="form-label">Description</label>
-                    <textarea name="desc" id="desc" rows="3" class="form-input"></textarea>
+                    <textarea name="desc" id="desc" rows="3" class="form-input" required></textarea>
                 </div>
                 <button class="btn btn-submit">Submit</button>
             </form>

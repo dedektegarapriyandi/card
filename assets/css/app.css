@@ -167,6 +167,7 @@
   font-weight: 500;
   color: #212529;
   margin-bottom: 0.2rem;
+  text-transform: capitalize;
 }
 .card-content .card-container .card .card-title .sub-title {
   font-size: 0.8rem;
@@ -201,7 +202,9 @@
   padding: 1rem;
   color: rgba(255, 255, 255, 0.9);
   background-image: linear-gradient(7deg, #B83B5E, #F08A5D);
+  margin-bottom: 1rem;
   border-radius: 5px;
+  animation: shake 0.2s backwards;
 }
 .alert .message {
   font-size: 0.8rem;
@@ -253,6 +256,18 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(7px);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
 /*# sourceMappingURL=app.css.map */
