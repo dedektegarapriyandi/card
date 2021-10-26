@@ -238,6 +238,10 @@
   border-radius: 5px;
 }
 
+.highlight {
+  background-color: red;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }

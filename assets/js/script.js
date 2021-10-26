@@ -47,7 +47,7 @@ Article.prototype.add = (e) => {
 
     // simple validation
     if ((title === "") || (subTitle === "") || (category === "") || (description === "")) {
-        const element = alertMessage("Insert data correctly", "");
+        const element = alertMessage("Insert data correctly");
         cards.insertBefore(element, cards.firstChild);
 
         return setTimeout(() => {
@@ -118,10 +118,10 @@ Article.prototype.getDate = (date) => {
 
 Article.prototype.newCard = (data) => {
     data.forEach(value => {
-        const cardContainer = document.querySelector(".card-container");
         const newA = document.createElement("a");
         newA.classList.add("card");
         newA.setAttribute("href", "#");
+
         newA.innerHTML = `<div class="card-img">
                                 <img src="./assets/img/amazon.jpg" alt="img">
                                 <div class="date">${Article.prototype.getDate(value.date)}</div>
@@ -138,7 +138,7 @@ Article.prototype.newCard = (data) => {
                                 <p class="time"><i class="far fa-clock"></i>${Article.prototype.timeAgo(value.date)}</p>
                             </div>`
 
-        cardContainer.appendChild(newA);
+        cards.appendChild(newA);
     })
 }
 
@@ -166,7 +166,7 @@ Article.prototype.filter = (e) => {
 
 Article.prototype.search = () => {
     cards.innerHTML = "";
-    cards.appendChild(alertMessage(search.value, "not found!"));
+    cards.appendChild(alertMessage(`"${search.value}" not found!`));
 
     Article.prototype.newCard(data.filter(item => {
         const dataTitle = item.title.toLowerCase();
@@ -179,13 +179,13 @@ Article.prototype.search = () => {
     }));
 }
 
-const alertMessage = (object, message) => {
+const alertMessage = (message) => {
     const newDiv = document.createElement("div");
     newDiv.classList.add("alert");
 
     const newP = document.createElement("p");
     newP.classList.add("message");
-    newP.innerText = `"${object}" ${message}`;
+    newP.innerText = message;
 
     newDiv.appendChild(newP);
 
